@@ -64,12 +64,12 @@ const getAllBooks = (books) => {
             <img class="fluid w-50 h-75 mx-auto mt-2" src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="book_cover">
             <div class="card-body">
                 <h5 class="card-title">${book.title}</h5>
-                <p class="card-title"><i>Author: ${book.author_name}</i></p>
+                <p class="card-title"><i>Author: ${book.author_name ? book.author_name : ""}</i></p>
                 
-                <p class="card-text">publisher: ${book.publisher_facet}.</p>
+                <p class="card-text">publisher: ${book.publisher_facet ? book.publisher_facet : ""}</p>
             </div>
             <div class="card-footer">
-                <small class="text-muted">first publish year: ${book.first_publish_year}</small>
+                <small class="text-muted">first publish year: ${book.first_publish_year ? book.first_publish_year : ""}</small>
             </div>
         </div>
         `;
