@@ -17,29 +17,37 @@ const getBookName = () => {
         return;
     }
     else {
+        // spinner show
+        document.getElementById("spinner").classList.remove("d-none");
+
         const url = `https://openlibrary.org/search.json?q=${inputValue}`;
         fetch(url)
             .then(res => res.json())
             .then(data => getAllBooks(data))
+            .finally(()=>{                
+                //clear input field
+                input_field.value = "";
+            })
 
     }
 
-    //clear input field
-    input_field.value = "";
-    //clear error message
-    errorDisplay.innerHTML = "";
 
-    //clear display Book result 
-    displayBooks.textContent = "";
+//clear error message
+errorDisplay.innerHTML = "";
 
-    // clear total result found
-    const totalResult = document.getElementById("totalResultFound");
-    totalResult.innerHTML = "";
+//clear display Book result 
+displayBooks.textContent = "";
+
+// clear total result found
+const totalResult = document.getElementById("totalResultFound");
+totalResult.innerHTML = "";
 
 
 }
 
 const getAllBooks = (books) => {
+     // spinner hidden
+     document.getElementById("spinner").classList.add("d-none");
 
     //error handling (no result found) 
     if (books.numFound === 0) {
@@ -66,7 +74,7 @@ const getAllBooks = (books) => {
                 <h5 class="card-title">${book.title}</h5>
                 <p class="card-title"><i>Author: ${book.author_name ? book.author_name : ""}</i></p>
                 
-                <p class="card-text">publisher: ${book.publisher_facet ? book.publisher_facet : ""}</p>
+                <p class="card-text">publisher: ${book.publisher_facet[0] ? book.publisher_facet[0] : ""}</p>
             </div>
             <div class="card-footer">
                 <small class="text-muted">first publish year: ${book.first_publish_year ? book.first_publish_year : ""}</small>
