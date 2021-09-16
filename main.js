@@ -1,3 +1,16 @@
+// Enter button trigger
+
+// Get the input field
+let input = document.getElementById("input-field");
+let myBtn = document.getElementById("myBtn");
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keypress", function(event) {
+    if(event.key=="Enter"){
+        myBtn.click();
+        event.preventDefault();
+    }
+});
+
 
 //error handling 
 const errorDisplay = document.getElementById("errorDisplay");
@@ -72,9 +85,9 @@ const getAllBooks = (books) => {
             <img class="fluid w-50 h-75 mx-auto mt-2" src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="book_cover">
             <div class="card-body">
                 <h5 class="card-title">${book.title}</h5>
-                <p class="card-title"><i>Author: ${book.author_name ? book.author_name : ""}</i></p>
+                <p class="card-title"><i>Author: ${book.author_name ? book.author_name : "unknown_Author"}</i></p>
                 
-                <p class="card-text">publisher: ${book.publisher_facet[0] ? book.publisher_facet[0] : ""}</p>
+                <p class="card-text">publisher: ${book.publisher_facet ? book.publisher_facet[0] : "unknown_Publisher"}</p>
             </div>
             <div class="card-footer">
                 <small class="text-muted">first publish year: ${book.first_publish_year ? book.first_publish_year : ""}</small>
